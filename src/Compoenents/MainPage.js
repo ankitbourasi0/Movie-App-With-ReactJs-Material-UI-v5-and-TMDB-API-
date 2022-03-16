@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import React from "react";
 import MovieCard from "./MovieCard";
 import { Grid,  Typography } from "@mui/material";
+import SearchModal from './SearchModal'
+import Search from "./Search";
 
 const MainPage = () => {
   const [storedData, setStoredData] = useState([]);
@@ -22,11 +24,19 @@ const MainPage = () => {
     <div style={{
         padding:'5rem'
     }}>
-     
-        <Typography variant="h3" style={{
-            marginBottom:'2rem'
+     <div style={{
+       display:'flex',
+      
+     }}>
+     <Typography variant="h3" style={{
+            marginBottom:'2rem',
+            flexGrow:1
         }}>Trending Movies</Typography>
-        
+        <SearchModal>
+          <Search/>
+        </SearchModal>
+     </div>
+       
       <Grid container spacing={1} direction="row" >
         {storedData.map((e) => (
           <Grid item xs={2} key={e.id}>

@@ -4,7 +4,44 @@ import axios from 'axios'
 import React, { useState,useEffect} from 'react'
 import MovieCard from './MovieCard'
 
-const Search = () => {
+
+import { createTheme ,ThemeProvider} from "@mui/material/styles";
+
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          scrollbarColor: "#6b6b6b #2b2b2b",
+          "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+            backgroundColor: "#2b2b2b",
+          },
+          "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+            borderRadius: 8,
+            backgroundColor: "#6b6b6b",
+            minHeight: 24,
+            border: "3px solid #2b2b2b",
+          },
+          "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+            backgroundColor: "#959595",
+          },
+          "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+            backgroundColor: "#959595",
+          },
+          "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#959595",
+          },
+          "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+            backgroundColor: "#2b2b2b",
+          },
+        },
+      },
+    },
+  },
+});
+
+
+const Search = (props) => {
   const [searchedText, setSearchedText] = useState('')
   const [storedData, setStoredData] = useState([])
 
@@ -18,11 +55,14 @@ const Search = () => {
     //eslint-disable-next-line
   }, [])
   
+
+  
   return (
     <>
+    
     <Box style={{
       display:'flex',
-      margin:'2rem 10rem'
+
     }}>
       <TextField 
     style={{flex:1}}
@@ -39,12 +79,14 @@ const Search = () => {
     </Box>
     
     <div style={{
-        padding:'5rem'
+        padding:'5rem',
+    
     }}>
      
-        <Typography variant="h3" style={{
-            marginBottom:'2rem'
+        <Typography variant="h4" style={{
+            marginBottom:'1rem'
         }}>Searched Movies</Typography>
+        <ThemeProvider theme={theme}>
       <Grid container spacing={1} direction="row" >
         {storedData.map((e) => (
           <Grid item xs={2} key={e.id}>
@@ -60,6 +102,7 @@ const Search = () => {
         ))}
         
       </Grid>
+      </ThemeProvider>
      
 
     </div>

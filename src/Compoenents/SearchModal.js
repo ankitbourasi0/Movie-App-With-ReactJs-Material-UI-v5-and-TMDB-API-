@@ -25,7 +25,10 @@ export default function SearchModal({children}) {
 
   return (
     <div>
-      <Button variant='contained' onClick={handleOpen}>Search</Button>
+      <Button variant='contained' color="secondary" style={{
+        // padding: '1rem 2rem',
+        fontSize: '24px'
+      }} onClick={handleOpen}>Search</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import { img_500 } from './Configuration';
+import { img_500, unavailable } from './Configuration';
 
 const style = {
   position: 'absolute',
@@ -16,9 +16,9 @@ const style = {
   width: '70%',
   height:'60%',
   bgcolor: 'background.paper',
- 
+  
   boxShadow: 24,
-  p: 4,
+  p: 10,
 };
 
 export default function MovieDetails({children,id}) {
@@ -53,26 +53,31 @@ export default function MovieDetails({children,id}) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
-            <Box style={{display:'flex'}}>
+          <Box sx={style} className="OuterBox">
+            <Box style={{display:'flex'}} className="firstSection">
+              <Box style={{flexGrow:1}}>
             <Typography id="transition-modal-title" variant="h3" component="h2" style={{flexGrow:1}}>
              {storedData.title}
             </Typography>
-            <img src={storedData.poster_path/`${img_500}/${storedData.poster_path}`}/>
-            <Typography variant="h5" >
-                Rating 
-            </Typography>
-            <Typography id="transition-modal-title" variant="h6" component="h1">
-            
-             {storedData.vote_average}
-            </Typography>
-            </Box>
-           
-
             <Typography id="transition-modal-description" sx={{ mt: 2,
             maxWidth:'350px' } }>
              {storedData.overview}
             </Typography>
+            </Box>
+            <Box className="secondSection">
+            <img alt="poster" width={300} src={storedData.poster_path?`${img_500}/${storedData.poster_path}`:unavailable}/>
+            <Typography variant="h5" >
+                Rating 
+            </Typography>
+            <Typography id="transition-modal-title" variant="h6" component="h1" style={{textAlign:'center'}}>
+            
+             {storedData.vote_average}
+            </Typography>
+            </Box>
+            </Box>
+           
+
+           
             
           </Box>
         </Fade>
